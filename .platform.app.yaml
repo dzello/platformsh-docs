@@ -29,8 +29,11 @@ hooks:
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
 
       # Generate the CLI command index page.
+      pwd
       curl -sS https://platform.sh/cli/installer | php
       [ -f .environment ] && . .environment
+      ls -Al
+      cat .environment
       platform list --format md > src/overview/cli-commands.md
 
 # There is no need for a writeable file mount, so set it to the smallest possible size.
