@@ -21,17 +21,17 @@ dependencies:
 # by default.
 hooks:
     build: |
-      # Generate the CLI command index page.
-      curl -sS https://platform.sh/cli/installer | php
-      [ -f .environment ] && . .environment
-      platform list --format md > src/overview/cli-commands.md
-
       # Install and compile GitBook
       gitbook install
       gitbook build
 
       # Gitbook doesn't allow for a custom favicon except through a theme plugin. So Plan B.
       cp src/images/favicon.ico _book/gitbook/images/favicon.ico
+
+      # Generate the CLI command index page.
+      curl -sS https://platform.sh/cli/installer | php
+      [ -f .environment ] && . .environment
+      platform list --format md > src/overview/cli-commands.md
 
 # There is no need for a writeable file mount, so set it to the smallest possible size.
 disk: 256
